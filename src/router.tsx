@@ -1,21 +1,14 @@
-import {
-	createBrowserRouter,
-	Route,
-	Link,
-} from "react-router-dom";
+import { createBrowserRouter, Route, Link } from "react-router-dom";
 import OverviewForm from "./components/OverviewForm.tsx";
-
-const router = createBrowserRouter([
+import Home from "./components/Home.tsx";
+import Tracker from "./components/initiative/Tracker.tsx";
+const Router = createBrowserRouter([
 	{
 		path: "/",
-		element: (
-			<div>
-				<h1>Hell World!</h1>
-				<Link to="overview"> Overview</Link>
-			</div>
-		),
+		element: <Home />,
 	},
-	{ path: "overview", element: <OverviewForm/> },
+	{ path: "overview", element: <OverviewForm /> },
+	{ path: "initiative", element: <Tracker /> },
 ]);
 
-export default router
+export default Router;
