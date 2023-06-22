@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const OverviewForm = () => {
-	const [documentTitle, setDocumentTitle] = useDocumentTitle("Overview");
+	useDocumentTitle("Overview");
 	return (
 		<>
 		<h1>overview</h1>
