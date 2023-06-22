@@ -3,7 +3,7 @@ import {useDocumentTitle} from "../hooks/useDocumentTitle.tsx";
 
 
 const Home = () => {
-	const [documentTitle, setDocumentTitle] = useDocumentTitle("Home")
+	useDocumentTitle("Home")
 	return (
 		<>
 			<Link to="/overview">OverView</Link><br/>
