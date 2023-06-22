@@ -10,6 +10,8 @@ const style = {
 	marginBottom: ".5rem",
 	backgroundColor: "white",
 	cursor: "move",
+	justifyContent: 'center',
+	display:'flex'
 };
 
 export interface CharCardProps {
@@ -99,10 +101,10 @@ export const CharCard: FC<CharCardProps> = ({ id, text, index, moveCard }) => {
 		}),
 	});
 
-	const opacity = isDragging ? 0 : 1;
+	const backgroundColor = isDragging ? 'grey' : '';
 	drag(drop(ref));
 	return (
-		<div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
+		<div ref={ref} style={{ ...style, backgroundColor }} data-handler-id={handlerId}>
 			{text}
 		</div>
 	);

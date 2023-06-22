@@ -6,7 +6,7 @@ const Home = () => {
 	const [documentTitle, setDocumentTitle] = useDocumentTitle("Home")
 	return (
 		<>
-			<Link to="/overview">OverView</Link>
+			<Link to="/overview">OverView</Link><br/>
 			<Link to="/initiative">Initiative Tracker</Link>
 		</>
 	);

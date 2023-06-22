@@ -1,9 +1,9 @@
 import update from "immutability-helper";
 import type { FC } from "react";
 import { useCallback, useState } from "react";
-import { CharCard } from "./Card";
+import { CharCard } from "./Card.tsx";
 import { initTrackerValues } from "../../../characterSheets.ts";
-
+import { Link } from "react-router-dom";
 const style = {
 	width: 400,
 };
@@ -17,12 +17,12 @@ export interface Item {
 
 export interface ContainerState {
 	characters: Item[];
+	characters2: Item[];
 }
 
 export const Container: FC = () => {
 	{
 		const [characters, setCharacters] = useState(initTrackerValues);
-
 		const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
 			setCharacters((prevChars: Item[]) =>
 				update(prevChars, {
@@ -61,6 +61,7 @@ export const Container: FC = () => {
 				<div style={style}>
 					{characters.map((char, i) => renderCharacters(char, i))}
 				</div>
+				<Link to="/">Home</Link>
 			</>
 		);
 	}
