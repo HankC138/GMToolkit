@@ -2,17 +2,18 @@ import update from "immutability-helper";
 import type { FC } from "react";
 import { useCallback, useState } from "react";
 import { CharCard } from "./Card.tsx";
-import { initTrackerValues } from "../../../characterSheets.ts";
+import { initTrackerValues } from "../../../characterSheets.js";
 import { Link } from "react-router-dom";
+import { HPadjuster } from "./HPadjuster.tsx";
 const style = {
 	width: 400,
 };
 
 export interface Item {
 	name: string;
-	ancestry: string;
 	class: string;
 	AC: number;
+	HP: number;
 }
 
 export interface ContainerState {
@@ -37,19 +38,25 @@ export const Tracker: FC = () => {
 				character: {
 					name: string;
 					class: string;
-					ancestry: string;
 					AC: number;
+					HP: number;
 				},
 				index: number
 			) => {
 				return (
-					<CharCard
-						key={`${character.name}_${index}`}
-						index={index}
-						id={character.name}
-						text={`${character.name}-${character.ancestry}-${character.class}-AC:${character.AC}`}
-						moveCard={moveCard}
-					/>
+					<div key={index}>
+						<CharCard
+							key={`${character.name}_${index}`}
+							index={index}
+							id={character.name}
+							name={character.name}
+							HP={character.HP}
+							AC={character.AC}
+							charClass={character.class}
+							moveCard={moveCard}
+						/>
+						<HPadjuster key={`${character.name}+${character.HP}${index}`} HP={character.HP} />
+					</div>
 				);
 			},
 			[]

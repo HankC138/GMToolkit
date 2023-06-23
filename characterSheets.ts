@@ -1,4 +1,4 @@
-const fynl ={
+const fynl = {
 	success: true,
 	build: {
 		name: "Fynl Fogblossom",
@@ -242,7 +242,7 @@ const fynl ={
 		],
 		familiars: [],
 	},
-}
+};
 
 const bombGoblin = {
 	success: true,
@@ -265,7 +265,7 @@ const bombGoblin = {
 		rituals: [],
 		resistances: ["acid 1", "fire 1"],
 		attributes: {
-			ancestryhp: 6,
+			ancestryhp: 5,
 			classhp: 8,
 			bonushp: 0,
 			bonushpPerLevel: 0,
@@ -430,7 +430,7 @@ const bombGoblin = {
 		pets: [],
 		familiars: [],
 	},
-}
+};
 
 const grant = {
 	success: true,
@@ -618,18 +618,29 @@ const grant = {
 		pets: [],
 		familiars: [],
 	},
-}
+};
 
-const characterSheets = [
-	bombGoblin, fynl, grant
-];
+const characterSheets = [bombGoblin, fynl, grant];
 
 export const initTrackerValues = characterSheets.map((char) => {
 	return {
 		name: char.build.name,
-		ancestry: char.build.ancestry,
 		class: char.build.class,
 		AC: char.build.acTotal.acTotal,
+		HP: calculateHP(char.build.attributes, char.build.abilities.con),
 	};
 });
+interface charAttributes {
+	ancestryhp: number;
+	classhp: number;
+	bonushp: number;
+}
+function calculateHP(
+	{ ancestryhp, classhp, bonushp }: charAttributes,
+	con: number
+){
+	const conMod = Math.floor((con - 10) / 2);
+	return ancestryhp + classhp + bonushp + conMod;
+}
+
 export default characterSheets;

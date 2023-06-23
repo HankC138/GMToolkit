@@ -17,7 +17,10 @@ const style = {
 export interface CharCardProps {
 	key: string;
 	id: string;
-	text: string;
+	HP: number;
+	AC: number;
+	name:string;
+	charClass:string;
 	index: number;
 	moveCard: (dragIndex: number, hoverIndex: number) => void;
 }
@@ -28,7 +31,7 @@ interface DragItem {
 	type: string;
 }
 
-export const CharCard: FC<CharCardProps> = ({ id, text, index, moveCard }) => {
+export const CharCard: FC<CharCardProps> = ({ id,name, HP,AC, charClass, index, moveCard }) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const [{ handlerId }, drop] = useDrop<
 		DragItem,
@@ -105,7 +108,7 @@ export const CharCard: FC<CharCardProps> = ({ id, text, index, moveCard }) => {
 	drag(drop(ref));
 	return (
 		<div ref={ref} style={{ ...style, backgroundColor }} data-handler-id={handlerId}>
-			{text}
+			-{name}-HP:{HP}-{charClass}-AC:{AC}-Init Order:{index+1}
 		</div>
 	);
 };
