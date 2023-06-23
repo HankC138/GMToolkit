@@ -20,7 +20,7 @@ export const HPadjuster = ({ HP }: IHPadjuster) => {
 	};
 	return (
 		<span>
-			<button onClick={() => HPadjustment("increment")}>+</button>
+			Current HP: <button onClick={() => HPadjustment("increment")}>+</button>
 			{currentHP}
 			<button onClick={()=> HPadjustment('decrement')}>-</button>
 		</span>

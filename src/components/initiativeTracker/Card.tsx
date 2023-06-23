@@ -11,6 +11,7 @@ const style = {
 	backgroundColor: "white",
 	cursor: "move",
 	justifyContent: 'center',
+	borderRadius: "10px",
 	display:'flex',
 };
 

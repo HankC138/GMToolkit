@@ -643,4 +643,10 @@ function calculateHP(
 	return ancestryhp + classhp + bonushp + conMod;
 }
 
+export const monsters = [
+	{name:'kobold', class:'monster', AC:15, HP:20},
+	{name:'rat', class:'monster', AC:12, HP:15},
+	{name:'genasi', class:'monster', AC:16, HP:18},
+	{name:'wyrmling', class:'monster', AC:18, HP:22},
+]
 export default characterSheets;
