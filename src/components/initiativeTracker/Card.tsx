@@ -11,7 +11,7 @@ const style = {
 	backgroundColor: "white",
 	cursor: "move",
 	justifyContent: 'center',
-	display:'flex'
+	display:'flex',
 };
 
 export interface CharCardProps {
