@@ -2,37 +2,11 @@ import type { Identifier, XYCoord } from "dnd-core";
 import type { FC } from "react";
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import { ItemTypes } from "./ItemTypes";
+import '../../styles/styles.css'
+import { CharCardProps,DragItem, ItemTypes } from "../../interfaces";
+import { HPadjuster } from "./HPadjuster";
 
-const style = {
-	border: "1px dashed gray",
-	padding: "0.5rem 1rem",
-	marginBottom: ".5rem",
-	backgroundColor: "white",
-	cursor: "move",
-	justifyContent: 'center',
-	borderRadius: "10px",
-	display:'flex',
-};
-
-export interface CharCardProps {
-	key: string;
-	id: string;
-	HP: number;
-	AC: number;
-	name:string;
-	charClass:string;
-	index: number;
-	moveCard: (dragIndex: number, hoverIndex: number) => void;
-}
-
-interface DragItem {
-	index: number;
-	id: string;
-	type: string;
-}
-
-export const CharCard: FC<CharCardProps> = ({ id,name, HP,AC, charClass, index, moveCard }) => {
+export const CharCard: FC<CharCardProps> = ({ id,name, HP,AC, charClass, index, moveCard, adjustHP }) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const [{ handlerId }, drop] = useDrop<
 		DragItem,
@@ -105,11 +79,15 @@ export const CharCard: FC<CharCardProps> = ({ id,name, HP,AC, charClass, index, 
 		}),
 	});
 
-	const backgroundColor = isDragging ? 'grey' : '';
+	const backgroundColor = isDragging ? 'dragging' : '';
 	drag(drop(ref));
 	return (
-		<div ref={ref} style={{ ...style, backgroundColor }} data-handler-id={handlerId}>
-			-{name}-HP:{HP}-{charClass}-AC:{AC}-Init Order:{index+1}
-		</div>
+		<span ref={ref} className={`initCard ${backgroundColor}`} data-handler-id={handlerId}>
+			-{name}<br/>-HP:{HP}<br/>-{charClass}-AC:{AC}<br/>-Init Order:{index+1}<br/>
+			<HPadjuster key={`${name}+${HP}${index}`}
+						HP={HP}
+						index={index}
+						adjustHP={adjustHP}/>
+		</span>
 	);
 };

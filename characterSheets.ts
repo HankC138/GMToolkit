@@ -1,3 +1,5 @@
+import { Item } from "./src/interfaces";
+
 const fynl = {
 	success: true,
 	build: {
@@ -625,7 +627,7 @@ const characterSheets = [bombGoblin, fynl, grant];
 export const initTrackerValues = characterSheets.map((char) => {
 	return {
 		name: char.build.name,
-		class: char.build.class,
+		charClass: char.build.class,
 		AC: char.build.acTotal.acTotal,
 		HP: calculateHP(char.build.attributes, char.build.abilities.con),
 	};
@@ -643,10 +645,10 @@ function calculateHP(
 	return ancestryhp + classhp + bonushp + conMod;
 }
 
-export const monsters = [
-	{name:'kobold', class:'monster', AC:15, HP:20},
-	{name:'rat', class:'monster', AC:12, HP:15},
-	{name:'genasi', class:'monster', AC:16, HP:18},
-	{name:'wyrmling', class:'monster', AC:18, HP:22},
+export const monsters : Item[] = [
+	{name:'kobold', charClass:'monster', AC:15, HP:20},
+	{name:'rat', charClass:'monster', AC:12, HP:15},
+	{name:'genasi', charClass:'monster', AC:16, HP:18},
+	{name:'wyrmling', charClass:'monster', AC:18, HP:22},
 ]
 export default characterSheets;

@@ -1,9 +1,7 @@
-import "./App.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {  RouterProvider } from "react-router-dom";
 import Router from "./router";
-
 function App() {
 	return (
 		<>

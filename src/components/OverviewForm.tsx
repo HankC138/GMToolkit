@@ -8,7 +8,7 @@ const OverviewForm = () => {
 		<h1>overview</h1>
 		<h2>overview</h2>
 		<h3>overview</h3>
-			<Link className="link" to="/">Home</Link>
+
 			<div className="content">
 				<form>
 					<label htmlFor="worldName"> Name of Your World:</label>
@@ -33,6 +33,8 @@ const OverviewForm = () => {
 					<br />
 				</form>
 			</div>
+
+			<Link to="/">Home</Link>
 		</>
 	);
 };
