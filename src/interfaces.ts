@@ -1,3 +1,5 @@
+
+
 export interface Item {
 	name: string;
 	charClass: string;
@@ -25,6 +27,11 @@ export interface CharCardProps {
 	adjustAC: (index: string, action: string) => void;
 }
 
+export interface EncounterProps {
+	removeEncounter: (index:number)=> void
+	value:number;
+}
+
 export interface DragItem {
 	index: number;
 	id: string;
@@ -49,3 +56,5 @@ export interface IHPadjuster {
 	adjustHP: (index: string, action: string) => void;
 	index: number;
 }
+
+
