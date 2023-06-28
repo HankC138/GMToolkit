@@ -89,3 +89,22 @@ h3 {
 .dragging {
 	background-color: grey;
 }
+
+.statsAdjustersDiv {
+	padding: 0.5rem 0.5rem;
+	display: grid;
+}
+
+.statsAdjuster{
+	margin-left: 1rem;
+}
+
+.dead{
+	background-color:crimson;
+	opacity: 0.8;
+}
+
+.adjusterButtons{
+	border-radius: 0.9rem;
+	margin: 0rem 0.3rem 0rem 0.3rem ;
+}

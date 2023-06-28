@@ -1,11 +1,7 @@
-import { useState, MouseEvent } from "react";
-interface IHPadjuster {
-	HP: number;
-	adjustHP: (index: string, action: string) => void;
-	index: number;
-}
+import { useState, MouseEvent, FC } from "react";
+import { IHPadjuster } from "../../interfaces";
 
-export const HPadjuster = ({ HP, adjustHP, index }: IHPadjuster) => {
+export const HPadjuster: FC<IHPadjuster> = ({ HP, adjustHP, index }) => {
 	const [currentHP, setCurrentHP] = useState(HP);
 
 	const HPadjustment = (action: string, event: MouseEvent) => {
@@ -22,14 +18,21 @@ export const HPadjuster = ({ HP, adjustHP, index }: IHPadjuster) => {
 		}
 	};
 	return (
-		<span>
-			Current HP:{" "}
-			<button value={index} onClick={(e) => HPadjustment("increment", e)}>
-				+
-			</button>
-			{currentHP}
-			<button value={index} onClick={(e) => HPadjustment("decrement", e)}>
+		<span className="statsAdjuster">
+			<button
+				className="adjusterButtons"
+				value={index}
+				onClick={(e) => HPadjustment("decrement", e)}
+			>
 				-
+			</button>
+			HP: {currentHP}
+			<button
+				className="adjusterButtons"
+				value={index}
+				onClick={(e) => HPadjustment("increment", e)}
+			>
+				+
 			</button>
 		</span>
 	);

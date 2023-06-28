@@ -1,12 +1,22 @@
 import type { Identifier, XYCoord } from "dnd-core";
-import type { FC } from "react";
-import { useRef } from "react";
+import { useRef, FC } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import '../../styles/styles.css'
-import { CharCardProps,DragItem, ItemTypes } from "../../interfaces";
+import "../../styles/styles.css";
+import { CharCardProps, DragItem, ItemTypes } from "../../interfaces";
 import { HPadjuster } from "./HPadjuster";
+import { ACadjuster } from "./ACadjuster";
 
-export const CharCard: FC<CharCardProps> = ({ id,name, HP,AC, charClass, index, moveCard, adjustHP }) => {
+export const CharCard: FC<CharCardProps> = ({
+	id,
+	name,
+	HP,
+	AC,
+	totalHP,
+	index,
+	moveCard,
+	adjustHP,
+	adjustAC,
+}) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const [{ handlerId }, drop] = useDrop<
 		DragItem,
@@ -79,15 +89,31 @@ export const CharCard: FC<CharCardProps> = ({ id,name, HP,AC, charClass, index, 
 		}),
 	});
 
-	const backgroundColor = isDragging ? 'dragging' : '';
+	const isDead = HP===0 ? 'dead' : '';
+	const backgroundColor = isDragging ? "dragging" : "";
+
 	drag(drop(ref));
 	return (
-		<span ref={ref} className={`initCard ${backgroundColor}`} data-handler-id={handlerId}>
-			-{name}<br/>-HP:{HP}<br/>-{charClass}-AC:{AC}<br/>-Init Order:{index+1}<br/>
-			<HPadjuster key={`${name}+${HP}${index}`}
-						HP={HP}
-						index={index}
-						adjustHP={adjustHP}/>
+		<span
+			ref={ref}
+			className={`initCard ${backgroundColor} ${isDead}`}
+			data-handler-id={handlerId}
+		>
+			-{name}
+			<br />
+			-Total HP:{totalHP}
+			<br />
+			-Init Order:{index + 1}
+			<br />
+			<div className="statsAdjustersDiv">
+				<HPadjuster
+					key={`${name}+${HP}${index}`}
+					HP={HP}
+					index={index}
+					adjustHP={adjustHP}
+				/>
+				<ACadjuster AC={AC} index={index} adjustAC={adjustAC} />
+			</div>
 		</span>
 	);
 };

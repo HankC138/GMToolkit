@@ -622,33 +622,35 @@ const grant = {
 	},
 };
 
-const characterSheets = [bombGoblin, fynl, grant];
+export const characterSheets = [bombGoblin, fynl, grant];
 
 export const initTrackerValues = characterSheets.map((char) => {
 	return {
-		name: char.build.name,
+		name: char.build.name.split(" ")[0],
 		charClass: char.build.class,
 		AC: char.build.acTotal.acTotal,
 		HP: calculateHP(char.build.attributes, char.build.abilities.con),
+		totalHP: calculateHP(char.build.attributes, char.build.abilities.con),
 	};
 });
+
 interface charAttributes {
 	ancestryhp: number;
 	classhp: number;
 	bonushp: number;
 }
+
 function calculateHP(
 	{ ancestryhp, classhp, bonushp }: charAttributes,
 	con: number
-){
+) {
 	const conMod = Math.floor((con - 10) / 2);
 	return ancestryhp + classhp + bonushp + conMod;
 }
 
-export const monsters : Item[] = [
-	{name:'kobold', charClass:'monster', AC:15, HP:20},
-	{name:'rat', charClass:'monster', AC:12, HP:15},
-	{name:'genasi', charClass:'monster', AC:16, HP:18},
-	{name:'wyrmling', charClass:'monster', AC:18, HP:22},
-]
-export default characterSheets;
+export const monsters: Item[] = [
+	{ name: "kobold", charClass: "monster", totalHP: 20, AC: 15, HP: 20 },
+	{ name: "rat", charClass: "monster", AC: 12, totalHP: 15, HP: 15 },
+	{ name: "genasi", charClass: "monster", AC: 16, totalHP: 18, HP: 18 },
+	{ name: "wyrmling", charClass: "monster", AC: 18, totalHP: 22, HP: 22 },
+];
