@@ -2,16 +2,11 @@ import update from "immutability-helper";
 import { useState, FC, MouseEvent } from "react";
 import { CharCard } from "./Card.tsx";
 import { initTrackerValues, monsters } from "../../../characterSheets.ts";
-import { EncounterProps, Item } from "../../interfaces.ts";
+import { Item } from "../../interfaces.ts";
 import "../../styles/styles.css";
 import { BestiarySelector } from "./BestiarySelector.tsx";
-export const Encounter: FC<EncounterProps> = ({ removeEncounter, value }) => {
-
+export const Encounter: FC = () => {
 	const [characters, setCharacters] = useState(initTrackerValues);
-
-	const handleRemoveClick = (encounterToDelete:number) => {
-		removeEncounter(encounterToDelete);
-	};
 
 	const moveCard = (dragIndex: number, hoverIndex: number) => {
 		setCharacters((prevChars: Item[]) =>
@@ -106,7 +101,6 @@ export const Encounter: FC<EncounterProps> = ({ removeEncounter, value }) => {
 				{characters.map((char, i) => renderCharacters(char, i))}
 				<BestiarySelector monsterClick={monsterClick} />
 				<br />
-				<button onClick={() => handleRemoveClick(value)}>Remove Encounter</button>
 			</div>
 		</>
 	);

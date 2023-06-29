@@ -27,11 +27,6 @@ export interface CharCardProps {
 	adjustAC: (index: string, action: string) => void;
 }
 
-export interface EncounterProps {
-	removeEncounter: (index:number)=> void
-	value:number;
-}
-
 export interface DragItem {
 	index: number;
 	id: string;
