@@ -1,7 +1,7 @@
 import update from "immutability-helper";
-import { useState, FC, MouseEvent } from "react";
+import { useState, FC } from "react";
 import { CharCard } from "./Card.tsx";
-import { initTrackerValues, monsters } from "../../../characterSheets.ts";
+import { initTrackerValues } from "../../../characterSheets.ts";
 import { Item } from "../../interfaces.ts";
 import "../../styles/styles.css";
 import { BestiarySelector } from "./BestiarySelector.tsx";

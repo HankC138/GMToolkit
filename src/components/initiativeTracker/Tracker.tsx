@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/styles.css";
 import { useDocumentTitle } from "../../hooks/useDocumentTitle.tsx";
